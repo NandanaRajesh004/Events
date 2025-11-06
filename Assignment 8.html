@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>10 Event Listeners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #log {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background: #fafafa;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #4CAF50;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>10 Event Listeners Demo</h1>
+        <button id="myButton">Click and Interact with Me!</button>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const button = document.getElementById('myButton');
+        const log = document.getElementById('log');
+        
+        function addLog(eventName) {
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            entry.textContent = `${time} - ${eventName}`;
+            log.prepend(entry);
+        }
+
+        // 10 different event listeners
+        button.addEventListener('click', () => addLog('Click'));
+        button.addEventListener('dblclick', () => addLog('Double Click'));
+        button.addEventListener('mousedown', () => addLog('Mouse Down'));
+        button.addEventListener('mouseup', () => addLog('Mouse Up'));
+        button.addEventListener('mouseover', () => addLog('Mouse Over'));
+        button.addEventListener('mouseout', () => addLog('Mouse Out'));
+        button.addEventListener('focus', () => addLog('Focus (Tab)'));
+        button.addEventListener('blur', () => addLog('Blur'));
+        button.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            addLog('Right Click');
+        });
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                addLog(`Key Press: ${e.key}`);
+            }
+        });
+
+        addLog('Ready - Interact with the button!');
+    </script>
+</body>
+</html>
